@@ -1,0 +1,27 @@
+package edu.purdue.jvanauke.lab;
+
+import android.view.View.*;
+import android.view.View;
+import java.util.*;
+import android.os.*;
+import android.widget.*;
+
+public class Listener implements OnClickListener {
+
+	public void OnClick(View arg) {
+		Button b = (Button) arg;
+		switch(b.Text().toString){
+		case "Reset":
+			StartActivity.logIt("Reset Pressed");
+			break;
+		case "Time":
+			StartActivity.logIt("Time Pressed");
+			break;
+		case "Serial":
+			StartActivity.logIt("Serial Pressed");
+			break;
+
+		}
+	}
+
+}

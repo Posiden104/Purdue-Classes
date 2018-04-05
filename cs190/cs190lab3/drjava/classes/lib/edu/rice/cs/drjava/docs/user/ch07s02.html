@@ -1,0 +1,29 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Simple Test Example</title><meta name="generator" content="DocBook XSL Stylesheets V1.69.1"><link rel="start" href="index.html" title="DrJava User Documentation"><link rel="up" href="ch07.html" title="Chapter 7. Testing using JUnit"><link rel="prev" href="ch07.html" title="Chapter 7. Testing using JUnit"><link rel="next" href="ch07s03.html" title="Viewing Test Failures"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Simple Test Example</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch07.html">Prev</a> </td><th width="60%" align="center">Chapter 7. Testing using JUnit</th><td width="20%" align="right"> <a accesskey="n" href="ch07s03.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="junit-example"></a>Simple Test Example</h2></div></div></div><p>Suppose you are writing a Calculator class that can perform simple operations on pairs of integers.  Before you even write the class, take a moment to write a few tests for it, as shown below.  (By writing tests early, you start thinking about which cases might cause problems.)  Then write the Calculator class, compile both classes, and run the tests to see if they pass.  If they do, write a few more test methods to check other cases that you have realized are important.  In this way, you can build up programs with a great deal of confidence.
+
+</p><pre class="programlisting">
+import junit.framework.TestCase;
+public class CalculatorTest extends TestCase {
+
+  public void testAddition() {
+    Calculator calc = new Calculator();
+    // 3 + 4 = 7
+    int expected = 7;
+    int actual = calc.add(3, 4);
+    assertEquals("adding 3 and 4", expected, actual);
+  }
+
+  public void testDivision() {
+    Calculator calc = new Calculator();
+    // Divide by zero shouldn't work
+    try {
+      calc.divide(2, 0);
+      fail("Should have thrown an exception!");
+    }
+    catch (ArithmeticException e) {
+      // Good, that's what we expect
+    }
+  }
+
+}
+</pre><p>
+      </p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch07.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch07.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch07s03.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Chapter 7. Testing using JUnit </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Viewing Test Failures</td></tr></table></div></body></html>

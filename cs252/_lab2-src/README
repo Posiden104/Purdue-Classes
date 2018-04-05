@@ -1,0 +1,37 @@
+Joel Van Auken
+jvanauke
+
+Makefile
+	- make command does nothing
+	- make clean removes files produced by xkcd_saver.sh
+
+pwcheck.sh
+	- length checking and error message
+	- checking for a single case, and appropriate score adjustment for:
+		- length of password
+		- containing special char
+		- 1+ number
+		- 1+ alpha character
+		- repition of alphanumeric character (aa, bbb)
+		- 3 consecutive lowercase char
+		- 3 consec. uppercase char
+		- 3 consec. numbers
+	- EXTRA FEATURE:
+		- The usage ./pwcheck [password] y
+			- Enable the password helper
+			- Password helper suggests edits to strengthen password
+
+xkcd_saver.sh
+	- Prints error message if the range of comics is invalid
+		- negative
+		- over 20
+	- downloads specified range of comics
+	= produces tarbal containing the images
+	= deleates any temporary files and directories created in zipping process
+	- gracefully handles missing comics
+	- gaurinteed to no produce empty comic
+	- EXTRA FEATURE
+		- alerts you if you tried to download a missing comic
+		- alerts you if there was no tarbal formed
+
+

@@ -1,0 +1,105 @@
+#!/bin/bash
+
+if [ $# -ne 1 ]
+then
+  echo "Usage: `basename $0` port"
+  exit 1
+fi
+
+PORT=$1
+
+(make clean; make)
+
+echo Killing any server running
+PIDS=`/bin/ps -u $USER | grep talk-ser | awk '{print $1;}'`
+kill -9 $PIDS >& /dev/null
+
+sleep 2
+
+total=0
+totalmax=0
+
+rm -f total.txt *out total.txt
+
+# Test driver
+function runtest {
+  prog=$1
+  args=$2
+  testinput=$3
+  grade=$4
+  inputdescr=
+  if [ "$testinput" != "none" ]; then
+      inputdescr=" < $testinput"
+  fi
+  descr="$prog $args $inputdescr"
+  
+  echo "======= $descr ==========="
+  $prog talk-server $PORT $args < $testinput > $prog.out
+  $prog talk-server.org $PORT $args < $testinput > $prog.org.out
+  diff $prog.out $prog.org.out > diff.out
+  if [ $? -eq 0 ]; then
+      cat $prog.out
+      echo Test passed...;
+      printf "%-36s: %-3d of %-3d\n" "$descr " $grade $grade >> total.txt
+      total=`expr $total + $grade`;
+  else
+      echo "*****Test Failed*****";
+      echo ------ Output with your talk-server ----------
+      cat $prog.out
+      echo ------ Expected Output with talk-server.org ------
+      cat $prog.org.out
+      echo ------ Difference -----------
+      cat diff.out
+      echo -----------------------------
+      printf "%-36s: %-3d of %-3d\n" "$descr " 0 $grade >> total.txt
+  fi
+  totalmax=`expr $totalmax + $grade`;
+  echo
+}
+
+# List of tests running
+runtest test-server1.sh "" none 12
+runtest test-server2.sh "" none 12
+runtest test-server3.sh "" none 12
+runtest test-server4.sh "" none 12
+runtest test-server5.sh "" none 13
+runtest test-server6.sh "" none 13
+runtest test-server7.sh "" none 13
+runtest test-server8.sh "" none 13
+
+echo
+echo
+echo   "-------------------------------------------------"
+echo   "CS240: Lab 5. $USER   "
+echo   "-------------------------------------------------"
+cat total.txt
+echo   "-------------------------------------------------"
+echo   "                              Total: " $total of $totalmax
+
+echo
+echo "Hints: "
+echo
+echo "a) To run only a single test, edit the file testall"
+echo "   and comment out the 'runtest' lines of the tests you do not"
+echo "   want to run. Make sure to uncomment the lines and run all tests"
+echo "   before you turnin your files."
+echo
+echo "   Example:"
+echo "     #runtest test-server1.sh \"\" none 12"
+echo "     runtest test-server2.sh \"\" none 12"
+echo "     #runtest test-server3.sh \"\" none 12"
+echo
+echo "b) You can pause the output by typing "
+echo "     testall | less "
+echo "   and then type <space> to go down or <ctrl-b> to go up."
+echo
+echo "c) You can also run an individual test by copying and pasting the test. "
+echo "   Example:"
+echo "     test_linked_list test7"
+echo
+echo "It is OK to discuss the solutions of the homework but you are suppose to work"
+echo "individually. Copying code is considered academic dishonesty. We have ways to"
+echo "find it and it could be penalized by failing the course and being reported to the"
+echo "Dean of Students. Also, the material you learn in this lab will be in the final exam."
+echo
+echo

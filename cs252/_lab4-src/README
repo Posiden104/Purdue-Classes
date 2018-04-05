@@ -1,0 +1,13 @@
+In step 3 (thr1) the output consisted of a seemingly random assortment of A's B's and C's, often with a single letter repeating for a short time.
+
+In step 5 (thr2) the output consisted of only C's being printed. This is because when the to printC("c") is made, it enters an infinite loop the main thread never reaches the thread execution.
+
+
+											System Time			User Time		Real Time
+pthread_mutex(count)					|	.00s			|	.26s		|	.147s		|
+spin lock (count_spin with thr_yield)	|	.45s			|	.27s		|	.366s		|
+spin lock (count_spin without thr_yield)|	.00s			|	1.57s		|	.839s		|
+
+1. without yield, count_spin completely blocks the system until one thread finishes the work load, then moves on to the next thread. With yield, count_spin can interweave the execution
+
+2. when count_spin has yield, it waits, using system time to wait on the resource to become avaliable.

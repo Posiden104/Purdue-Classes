@@ -1,0 +1,38 @@
+Add Users
+response:
+OK
+
+response:
+OK
+
+response:
+OK
+
+response:
+OK
+
+Enter room
+response:
+OK
+
+response:
+OK
+
+Print users in room
+response:
+superman
+aquaman
+
+
+Enter another user
+response:
+OK
+
+Print users in room
+response:
+superman
+aquaman
+mary
+
+
+Killing Server

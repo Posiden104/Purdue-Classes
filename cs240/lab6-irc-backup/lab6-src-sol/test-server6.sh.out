@@ -1,0 +1,131 @@
+Add Users
+response:
+OK
+
+response:
+OK
+
+response:
+OK
+
+response:
+OK
+
+Enter room
+response:
+OK
+
+response:
+OK
+
+Print users in room
+response:
+superman
+aquaman
+
+
+Enter another user
+response:
+OK
+
+Print users in room
+response:
+superman
+aquaman
+mary
+
+
+Send message
+response:
+OK
+
+response:
+OK
+
+Get messages
+response:
+1 superman  entered the room.
+2 aquaman  entered the room.
+3 mary  entered the room.
+4 mary Hi everybody!
+5 mary Welcome to the talk program!
+
+
+Send message
+response:
+OK
+
+response:
+OK
+
+response:
+OK
+
+response:
+OK
+
+response:
+OK
+
+response:
+OK
+
+response:
+OK
+
+response:
+OK
+
+response:
+OK
+
+response:
+OK
+
+response:
+OK
+
+Get messages from 0
+response:
+1 superman  entered the room.
+2 aquaman  entered the room.
+3 mary  entered the room.
+4 mary Hi everybody!
+5 mary Welcome to the talk program!
+6 superman Hi Mary!
+7 superman Here I am working on cs240
+8 superman I am testing the project
+9 superman message 1
+10 superman message 2
+11 superman message 3
+12 superman message 4
+13 superman message 5
+14 superman message 6
+15 superman message 7
+16 superman message 8
+
+
+Enter another user
+response:
+OK
+
+Get messages from 2
+response:
+3 mary  entered the room.
+4 mary Hi everybody!
+5 mary Welcome to the talk program!
+6 superman Hi Mary!
+7 superman Here I am working on cs240
+8 superman I am testing the project
+9 superman message 1
+10 superman message 2
+11 superman message 3
+12 superman message 4
+13 superman message 5
+14 superman message 6
+15 superman message 7
+16 superman message 8
+17 mary  left the room
+
+
+Killing Server

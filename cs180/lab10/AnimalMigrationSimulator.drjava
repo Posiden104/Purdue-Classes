@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<drjava version="drjava-20140826-r5761">
+  <project autorefresh="false" main="MigrationSimulator" root="" work="">
+    <createjar file=""/>
+    <source>
+      <file active="true" name="SiteGrid.java" package="" timestamp="17-Nov-2014 21:03:33">
+        <select from="1317" to="1317"/>
+        <scroll column="704" row="0"/>
+      </file>
+      <file name="SiteType.java" package="" timestamp="06-Nov-2013 13:16:40">
+        <select from="1317" to="1317"/>
+        <scroll column="704" row="0"/>
+      </file>
+      <file name="IllegalAnimalException.java" package="" timestamp="08-Nov-2013 15:07:54">
+        <select from="1317" to="1317"/>
+        <scroll column="704" row="0"/>
+      </file>
+      <file name="Animal.java" package="" timestamp="17-Nov-2014 21:02:20">
+        <select from="1317" to="1317"/>
+        <scroll column="704" row="0"/>
+      </file>
+      <file name="MigrationSimulator.java" package="" timestamp="17-Nov-2014 21:02:53">
+        <select from="1317" to="1317"/>
+        <scroll column="704" row="0"/>
+      </file>
+      <file name="Site.java" package="" timestamp="17-Nov-2014 21:03:21">
+        <select from="1317" to="1317"/>
+        <scroll column="704" row="0"/>
+      </file>
+    </source>
+    <included/>
+    <excluded/>
+    <collapsed/>
+    <classpath/>
+    <breakpoints/>
+    <watches/>
+    <bookmarks/>
+    <preferences/>
+  </project>
+</drjava>

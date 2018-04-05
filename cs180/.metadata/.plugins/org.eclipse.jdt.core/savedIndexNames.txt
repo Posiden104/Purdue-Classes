@@ -1,0 +1,17 @@
+INDEX VERSION 1.127+/u/data/u96/jvanauke/cs180/.metadata/.plugins/org.eclipse.jdt.core
+1863283194.index
+1619331558.index
+2768313878.index
+3769173212.index
+3518093574.index
+1662633935.index
+959308154.index
+3500774584.index
+1430610781.index
+929259357.index
+1608964521.index
+690314056.index
+3043919228.index
+1109360049.index
+4221938072.index
+2320623984.index

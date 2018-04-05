@@ -1,0 +1,417 @@
+
+#include <assert.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include "linked_list.h"
+
+//
+// It returns a new LINKED_LIST. It allocates it dynamically,
+// and initializaes the values. The initial list is empty.
+//
+LINKED_LIST * llist_create() {
+
+	LINKED_LIST * list = (LINKED_LIST *) malloc(sizeof(LINKED_LIST));
+	if (list == NULL) {
+		return NULL;
+	}
+
+	// Create Sentinel node. This node does not store any data
+	// but simplifies the list implementation.
+	list->head = (LINKED_LIST_ENTRY *) malloc(sizeof(LINKED_LIST_ENTRY));
+	if (list->head == NULL) {
+		return NULL;
+	}
+	
+	
+	list->nElements = 0;
+	list->head->next = list->head;
+	list->head->previous = list->head;
+	
+	return list;
+}
+
+//
+// It prints the elements in the alist in the form:
+//
+//===== List =====
+//currentElements=2 maxElements=10
+//0: Name: "George"       "23 Oak St, West Lafayette, 47906"
+//1: Name: "Peter"        "27 Oak St, West Lafayette, 47906"
+//======== End List =======
+//
+void llist_print(LINKED_LIST * list) {
+	
+	LINKED_LIST_ENTRY * e;
+
+	printf("===== List =====\n");
+	printf("nElements=%d\n", list->nElements);
+
+	e = list->head->next;
+	while (e != list->head) {
+		printf("name=\"%s\" value=\"%s\"\n", e->name, e->value);
+		e = e->next;
+	}
+	printf("======== End List =======\n");
+}
+
+//
+// Adds one pair name/value to the list. If the name already exists it will
+// Substitute its value. Otherwise, it will store name/value in a new entry.
+// The name/vale strings are duplicated with strdup() before adding them to the
+// list.
+//
+int llist_add(LINKED_LIST * list, char * name, char * value) {
+	LINKED_LIST_ENTRY * e;
+	e = list->head->next;
+	// Try to find if entry is already there
+	while (e!=list->head) {
+		if (!strcmp(e->name,name)) {
+			// Entry found. Substitute value
+			free(e->value);
+			e->value = value;
+			return 1;
+		}
+		e = e->next;
+	}
+
+	// Entry not found. Add new entry at the end of the list
+	e = (LINKED_LIST_ENTRY *)malloc(sizeof(LINKED_LIST_ENTRY));
+	e->name = strdup(name);
+	e->value = strdup(value);
+
+	//Add at the beginning
+	e->next = list->head;
+	e->previous = list->head->previous;
+	list->head->previous = e;
+	e->previous->next = e;
+	
+	list->nElements++;
+	
+	return 0;
+}
+
+//
+// Returns the value that correspond to the name or NULL if the
+// name does not exist in the list.
+//
+char * llist_lookup(LINKED_LIST * list, char * name) {
+	LINKED_LIST_ENTRY * e;
+	e = list->head->next;
+	
+	// Try to find if entry is already there
+	while (e!=list->head) {
+		if (!strcmp(e->name,name)) {
+			// Entry found.
+			return e->value;
+		}
+		e = e->next;
+	}
+
+	return NULL;
+}
+
+//
+// It removes the entry with that name from the list.
+// Also the name and value strings will be freed.
+//
+int llist_remove(LINKED_LIST * list, char * name) {
+	LINKED_LIST_ENTRY * e;
+	e = list->head->next;
+	
+	// Try to find if entry is already there
+	while (e!=list->head) {
+		if (!strcmp(e->name,name)) {
+			// Entry found.
+			break;
+		}
+		e = e->next;
+	}
+
+	if (e==list->head) {
+		// Entry not found.
+		return 0;
+	}
+
+	e->previous->next = e->next;
+	e->next->previous = e->previous;
+
+	free(e->name);
+	free(e->value);
+	free(e);
+
+	list->nElements--;
+	
+	return 1;
+}
+
+//
+// It returns in *name and *value the name and value that correspond to
+// the ith entry. It will return 1 if successful, or 0 otherwise.
+//
+int llist_get_ith(LINKED_LIST * list, int ith, char ** name, char ** value) {
+	LINKED_LIST_ENTRY * e;
+	int i = 0;
+		
+	e = list->head->next;
+	
+	// Try to find if entry is already there
+	while (e!=list->head && i < ith) {
+		e = e->next;
+		i++;
+	}
+
+	if (e==list->head) {
+		// Entry not found.
+		return 0;
+	}
+
+	*name = e->name;
+	*value = e->value;
+
+	return 1;
+}
+
+//
+// It removes the ith entry from the list.
+// Also the name/value strings are freed.
+//
+int llist_remove_ith(LINKED_LIST * list, int ith) {
+	LINKED_LIST_ENTRY * e;
+	int i = 0;
+		
+	e = list->head->next;
+	
+	// Try to find if entry is already there
+	while (e!=list->head && i < ith) {
+		e = e->next;
+		i++;
+	}
+
+	if (e==list->head) {
+		// Entry not found.
+		return 0;
+	}
+
+	// Remove entry
+	e->previous->next = e->next;
+	e->next->previous = e->previous;
+
+	free(e->name);
+	free(e->value);
+	free(e);
+
+	list->nElements--;
+	
+	return 1;
+}
+
+//
+// It returns the number of elements in the list.
+//
+int llist_number_elements(LINKED_LIST * list) {
+	return list->nElements;
+}
+
+
+//
+// It saves the list in a file called file_name. The format of the
+// file is as follows:
+//
+// name1\n
+// value1\n
+// \n
+// name2\n
+// value2\n
+// ...
+//
+// Notice that there is an empty line between each name/value pair.
+//
+int llist_save(LINKED_LIST * list, char * file_name) {
+	LINKED_LIST_ENTRY * e;
+	FILE * fd = fopen(file_name, "w+");
+
+	if (fd==NULL) {
+		return 0;
+	}
+
+	e = list->head->next;
+	
+	// Try to find if entry is already there
+	while (e!=list->head) {
+		fputs(e->name, fd);
+		fprintf(fd,"\n");
+		fputs(e->value, fd);
+		fprintf(fd,"\n\n");
+		e = e->next;
+	}
+
+	fclose(fd);
+	
+	return 1;
+}
+
+//
+// It reads the list from the file_name indicated. If the list already has entries, it will
+// clear the entries.
+//
+int llist_read(LINKED_LIST * list, char * file_name) {
+	int i;
+	char name[512];
+	char value[512];
+	
+	FILE * fd = fopen(file_name, "r");
+	if (fd==NULL) {
+		// File does not exist
+		return 0;
+	}
+
+	while (fgets(name, 512, fd) != NULL &&
+	       fgets(value, 512, fd) != NULL) {
+		// Remove new lines
+		name[strlen(name)-1]=0;
+		value[strlen(value)-1]=0;
+		// add into list
+		llist_add(list, name, value);
+		// Skip empty line
+		fgets(name, 512, fd);
+	}
+	
+	fclose(fd);
+	
+	return 1;
+}
+
+//
+// It sorts the list according to the name. The parameter ascending determines if the
+// order si ascending (1) or descending(0).
+//
+void llist_sort(LINKED_LIST * list, int ascending) {
+	int need_swap = 1;
+	LINKED_LIST_ENTRY * e;
+
+	// Use bubble sort
+	while (need_swap) {
+		need_swap = 0;
+		e = list->head->next;
+		while (e!=list->head && e->next!=list->head) {
+			int result = strcmp(e->name, e->next->name);
+			if (ascending) result = -result;
+
+			if (result <0) {
+				// Swap entries
+				char * tmp = e->name;
+				e->name = e->next->name;
+				e->next->name = tmp;
+				tmp = e->value;
+				e->value = e->next->value;
+				e->next->value = tmp;
+				need_swap = 1;
+			}
+			e = e->next;
+		}
+	}
+
+	
+	
+}
+
+//
+// It removes the first entry in the list.
+// All entries are moved down one position.
+// It also frees memory allocated for name and value.
+//
+int llist_remove_first(LINKED_LIST * list) {
+	// Remove first element and return name and value
+	LINKED_LIST_ENTRY * e;
+
+	if (list->head->next==list->head) {
+		// List empty
+		return 0;
+	}
+
+	e = list->head->next;
+	e->previous->next = e->next;
+	e->next->previous = e->previous;
+
+	free(e->name);
+	free(e->value);
+	free(e);
+
+	list->nElements--;
+		
+	return 1;
+}
+
+//
+// It removes the last entry in the list
+// It also frees memory allocated for name and value.
+//
+int llist_remove_last(LINKED_LIST * list) {
+	// Remove first element and return name and value
+	LINKED_LIST_ENTRY * e;
+
+	if (list->head->next==list->head) {
+		// List empty
+		return 0;
+	}
+
+	e = list->head->previous;
+	e->previous->next = e->next;
+	e->next->previous = e->previous;
+		
+	free(e->name);
+	free(e->value);
+	free(e);
+		
+	list->nElements--;
+		
+	return 1;
+}
+
+//
+// Insert a name/value pair at the beginning of the list.
+// There is no check if the name already exists. The entry is added
+// at the beginning of the list.
+//
+int llist_insert_first(LINKED_LIST * list, char *name, char * value) {
+	LINKED_LIST_ENTRY * e;
+
+	e = (LINKED_LIST_ENTRY *)malloc(sizeof(LINKED_LIST_ENTRY));
+	e->name = strdup(name);
+	e->value = strdup(value);
+
+	//Add at the beginning
+	e->next = list->head->next;
+	e->previous = list->head;
+	list->head->next = e;
+	e->next->previous = e;
+	
+	list->nElements++;
+       		
+	return 1;
+}
+
+//
+// Insert a name/value pair at the end of the list.
+// There is no check if the name already exists. The entry is added
+// at the end of the list.
+//
+int llist_insert_last(LINKED_LIST * list, char *name, char * value) {
+	LINKED_LIST_ENTRY * e;
+
+	e = (LINKED_LIST_ENTRY *)malloc(sizeof(LINKED_LIST_ENTRY));
+	e->name = strdup(name);
+	e->value = strdup(value);
+
+	//Add at the end
+	e->next = list->head;
+	e->previous = list->head->previous;
+	list->head->previous = e;
+	e->previous->next = e;
+	
+	list->nElements++;
+       		
+	return 1;
+}
+

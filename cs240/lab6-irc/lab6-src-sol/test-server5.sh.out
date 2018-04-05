@@ -1,0 +1,54 @@
+Add Users
+response:
+OK
+
+response:
+OK
+
+response:
+OK
+
+response:
+OK
+
+Enter room
+response:
+OK
+
+response:
+OK
+
+Print users in room
+response:
+superman
+aquaman
+
+
+Enter another user
+response:
+OK
+
+Print users in room
+response:
+superman
+aquaman
+mary
+
+
+Send message
+response:
+OK
+
+response:
+OK
+
+Get messages
+response:
+1 superman  entered the room.
+2 aquaman  entered the room.
+3 mary  entered the room.
+4 mary Hi everybody!
+5 mary Welcome to the talk program!
+
+
+Killing Server

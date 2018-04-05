@@ -1,0 +1,37 @@
+import javax.swing.JOptionPane;
+/**
+ * CS180 - Lab 08 - CollegeFeeCalculator
+ *
+ * Calculates the cost of college
+ *
+ * @author Joel Van Auken <javanauke@purdue.edu>
+ *
+ * @lab 801
+ *
+ * @date 11/6/2-14
+ */
+
+public String name;
+public boolean fullTime;
+public int creditHrs;
+public boolean inState;
+public boolean onCampus;
+public Hall hall;
+
+enum Hall {
+	Earhart, Hillenbrand, Owen, Windsor;
+}
+
+public CollegeFeeCaclulator() {
+	JOptionPane.showMessageDialog(null, "Welcome to CollegeFeeCalculator!", "CollegeFeeCalcualtor", JOptionPane.INFORMATION_MESSAGE);
+	
+	do{
+	name = JOptionPane.showInputDialog(null, "Please enter your name, them press OK", "Name", JOptionPane.QUESTION_MESSAGE);
+	fullTime = JOptionPane.showOptionDialog(null, "Please select your enrollment", "Enrollment", JOptionPane.QUESTION_MESSAGE, null, new String[] {"Part-time", "Full-time"}, null);
+	} while!JOptionPane.showConfirmDialog(null, "Would you like to preform another fee calculation?", "Are you done?", JOptionPane.YES_NO_OPTION);
+
+}
+
+public static void main(String[] args) {
+	JOptionPane.showMessageDialog(null, "Welcome to CollegeFeeCalculator!", "CollegeFeeCalculator", JOptionPane.INFORMATION_MESSAGE);
+}
