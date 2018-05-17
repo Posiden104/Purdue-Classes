@@ -1,0 +1,18 @@
+CXX = g++ -fPIC
+NETLIBS= -lnsl -lsocket
+
+all: talk-server test-talk-server
+
+talk-server: talk-server.c
+	gcc -g -o talk-server talk-server.c linked_list.c
+
+test-talk-server: test-talk-server.c
+	gcc -g -o test-talk-server test-talk-server.c linked_list.c
+
+talk-client: talk-client.c
+	gcc -g -o talk-client talk-client.c linked_list.c -lcurses
+
+clean:
+	rm -f *.o use-dlopen hello.so
+	rm -f *.o talk-server
+

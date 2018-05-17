@@ -1,0 +1,40 @@
+/**
+ * CS180 -Lab 02 -StringManipulator
+ * 
+ * Makes an email from full name and domain
+ * 
+ * @author Joel Van Auken <jvanauke@purdue.edu>
+ * 
+ * @lab 802
+ * 
+ * @date 9/11/2014
+ * 
+ **/
+
+import java.util.Scanner;
+    
+public class StringManipulator{
+     
+    public static void main(String[] args) {
+        StringManipulator sm = new StringManipulator();
+        Scanner s = new Scanner(System.in);
+        System.out.println("Please enter first and last name");
+        String userName = sm.makeUserName(s.nextLine());
+        System.out.println("Please enter domain name");
+        String email = sm.makeEmail(userName, s.nextLine());
+        System.out.println("The username for the person is: " + userName);
+        System.out.println("The email for the person is: " + email);
+    
+    }
+    
+    public String makeUserName(String fullName) {
+        String userName = fullName.substring(0, 1).toLowerCase();
+        userName = userName + fullName.substring(fullName.indexOf(' ') + 1).toLowerCase();
+        return userName;
+    }
+    
+    public String makeEmail(String userName, String domain) {
+        return userName + "@" + domain.toLowerCase();
+    }
+  
+}

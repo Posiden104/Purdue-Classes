@@ -1,0 +1,105 @@
+public class CaesarCipher {
+
+	public static String encrypt(String plntxt, int key) {
+		String str = justTheLetters(plntxt);
+		String ret = "";
+		char[] c = str.toCharArray();
+		for (int i = 0; i < c.length; i++) {
+			if (c[i] > 90 - key)
+				c[i] += key - 26;
+			else
+				c[i] += key;
+			ret += c[i];
+		}
+		return ret;
+	}
+
+	public static String decrypt(String ciptxt, int key) {
+		String str = justTheLetters(ciptxt);
+		String ret = "";
+		char[] c = str.toCharArray();
+		for (int i = 0; i < c.length; i++) {
+			if (c[i] < 65 + key)
+				c[i] -= key - 26;
+			else
+				c[i] -= key;
+			ret += c[i];
+		}
+		return ret;
+	}
+
+	public static String justTheLetters(String str) {
+		char[] c = str.toCharArray();
+		String ret = "";
+		for (int i = 0; i < c.length; i++) {
+			if (c[i] >= 65 && c[i] <= 90 || c[i] >= 97 && c[i] <= 122) {
+				ret += c[i];
+			}
+		}
+		ret = ret.toUpperCase();
+		return ret;
+	}
+	
+	public static int crack(String ciptxt){
+		int[] lett = new int[128];
+		int ret = 0;
+		char[] c = ciptxt.toCharArray();
+		for(int i = 0; i < c.length; i++){
+			lett[c[i]] ++;
+		}
+		
+		for(int i = 0; i < lett.length; i++){
+			if(lett[i] > ret){
+				ret = i;
+			}
+		}
+		
+		ret -= 64;
+		
+		return ret;
+	}
+
+	public static void main(String[] args) {
+//		System.out.println(encrypt("ZEBRA", 3)); //CHEUD
+//		System.out.println(encrypt("RIYA", 4)); //VMCE
+//		System.out.println(decrypt("CHEUD", 3)); //ZEBRA
+//		System.out.println(decrypt("VMCE", 4)); //RIYA
+//		System.out.println(justTheLetters("aBc32D2E")); //ABCDE
+//		System.out.println(justTheLetters("c<%2D2E")); //CDE
+		String s = s();
+		System.out.println(crack(s));
+		System.out.println(decrypt(s, 5));
+	}
+	
+	
+	
+	
+	
+	public static String s(){
+		return "BPWAMEPWKIUMJMNWZMCAUILMKMZBIQVBPIBBPQAKWCVBZGZWLMBPMNQZABEIDMA" +
+				"WNBPMQVLCABZQITZMDWTCBQWVABPMNQZABEIDMAWNUWLMZVQVDMVBQWVIVLBPMN" +
+				"QZABEIDMWNVCKTMIZXWEMZIVLBPQAOMVMZIBQWVLWMAVWBQVBMVLBWNWCVLMZQV" +
+				"BPMJIKSEIAPWNBPMKWUQVOIOMWNAXIKMEMUMIVBWJMIXIZBWNQBEMUMIVBWTMIL" +
+				"QBNWZBPMMGMAWNBPMEWZTLVWETWWSQVBWAXIKMBWBPMUWWVIVLBWBPMXTIVMBAJ" +
+				"MGWVLIVLEMPIDMDWEMLBPIBEMAPITTVWBAMMQBOWDMZVMLJGIPWABQTMNTIOWNK" +
+				"WVYCMABJCBJGIJIVVMZWNNZMMLWUIVLXMIKMEMPIDMDWEMLBPIBEMAPITTVWBAM" +
+				"MAXIKMNQTTMLEQBPEMIXWVAWNUIAALMABZCKBQWVJCBEQBPQVABZCUMVBAWNSVW" +
+				"ETMLOMIVLCVLMZABIVLQVOGMBBPMDWEAWNBPQAVIBQWVKIVWVTGJMNCTNQTTMLQ" +
+				"NEMQVBPQAVIBQWVIZMNQZABIVLBPMZMNWZMEMQVBMVLBWJMNQZABQVAPWZBWCZT" +
+				"MILMZAPQXQVAKQMVKMIVLQVQVLCABZGWCZPWXMANWZXMIKMIVLAMKCZQBGWCZWJ" +
+				"TQOIBQWVABWWCZAMTDMAIAEMTTIAWBPMZAITTZMYCQZMCABWUISMBPQAMNNWZBB" +
+				"WAWTDMBPMAMUGABMZQMABWAWTDMBPMUNWZBPMOWWLWNITTUMVIVLBWJMKWUMBPM" +
+				"EWZTLATMILQVOAXIKMNIZQVOVIBQWVEMAMBAIQTWVBPQAVMEAMIJMKICAMBPMZM" +
+				"QAVMESVWETMLOMBWJMOIQVMLIVLVMEZQOPBABWJMEWVIVLBPMGUCABJMEWVIVLC" +
+				"AMLNWZBPMXZWOZMAAWNITTXMWXTMNWZAXIKMAKQMVKMTQSMVCKTMIZAKQMVKMIV" +
+				"LITTBMKPVWTWOGPIAVWKWVAKQMVKMWNQBAWEVEPMBPMZQBEQTTJMKWUMINWZKMN" +
+				"WZOWWLWZQTTLMXMVLAWVUIVIVLWVTGQNBPMCVQBMLABIBMAWKKCXQMAIXWAQBQW" +
+				"VWNXZMMUQVMVKMKIVEMPMTXLMKQLMEPMBPMZBPQAVMEWKMIVEQTTJMIAMIWNXMI" +
+				"KMWZIVMEBMZZQNGQVOBPMIBMZWNEIZQLWVWBAIGBPMEMAPWCTLWZEQTTOWCVXZW" +
+				"BMKBMLIOIQVABBPMPWABQTMUQACAMWNAXIKMIVGUWZMBPIVEMOWCVXZWBMKBMLI" +
+				"OIQVABBPMPWABQTMCAMWNTIVLWZAMIJCBQLWAIGBPIBAXIKMKIVJMMFXTWZMLIV" +
+				"LUIABMZMLEQBPWCBNMMLQVOBPMNQZMAWNEIZEQBPWCBZMXMIBQVOBPMUQABISMA" +
+				"BPIBUIVPIAUILMQVMFBMVLQVOPQAEZQBIZWCVLBPQAOTWJMWNWCZA";
+	}
+	
+}

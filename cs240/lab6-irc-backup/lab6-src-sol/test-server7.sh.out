@@ -1,0 +1,67 @@
+Add Users
+response:
+OK
+
+response:
+OK
+
+response:
+OK
+
+response:
+OK
+
+response:
+ERROR (Wrong password)
+
+Test password in GET_ALL_USERS
+response:
+ERROR (Wrong password)
+
+response:
+ERROR (Wrong password)
+
+Test password in ENTER-ROOM
+response:
+ERROR (Wrong password)
+
+response:
+ERROR (Wrong password)
+
+Test password in GET-USERS-IN-ROOM
+response:
+ERROR (Wrong password)
+
+response:
+ERROR (Wrong password)
+
+Test password in LEAVE-ROO
+response:
+ERROR (Wrong password)
+
+response:
+ERROR (Wrong password)
+
+Test password in SEND-MESSAGE
+response:
+ERROR (Wrong password)
+
+response:
+ERROR (Wrong password)
+
+Test password in GET-MESSAGES
+response:
+ERROR (Wrong password)
+
+response:
+ERROR (Wrong password)
+
+Test password OK
+response:
+superman
+spiderman
+aquaman
+mary
+
+
+Killing Server

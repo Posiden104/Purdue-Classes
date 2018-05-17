@@ -1,0 +1,6 @@
+Enter an animal sound : Enter a small animal : Enter a large animal : 
+
+Dog goes bark,
+Kitten goes meow,
+Bird goes tweet,
+and Elephant goes squeak.

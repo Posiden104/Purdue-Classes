@@ -1,0 +1,7 @@
+Hello,
+Welcome to Vim.
+How are you this fine day?
+
+This This This This lab is about vim.
+I hope the lab is educational.
+It should also be fun!

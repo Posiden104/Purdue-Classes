@@ -1,0 +1,126 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#include "slist.h"
+
+void
+sllist_init(SLList * list)
+{
+	list->head = NULL;
+}
+
+// Add int value to the end of list. The values may be repeated.
+void
+sllist_add_end( SLList *list, int value )  {
+	SLEntry *s = (SLEntry*) malloc(sizeof(SLEntry));
+	SLEntry *p = list->head;
+	s->value = value;
+	s->next = NULL;
+	if(p == NULL) {
+		list->head = s;
+		return;
+	}
+	while(p->next != NULL) {
+		p = p->next;
+	}
+	p->next = s;
+}
+
+
+// Remove first occurrence of value in the list. It returns 1 if value is found or 0 otherwise.
+int sllist_remove(SLList *list, int value) {
+	SLEntry *s = list->head;
+	SLEntry *n = list->head;
+	if(list->head->value == value) {
+		n = list->head;
+		list->head = list->head->next;
+		free(n);
+		return 1;
+	}
+	while(s->next != NULL) {
+		if(s->next->value == value) {
+			n = s->next;
+			s->next = s->next->next;
+			free(n);
+			return 1;
+		}
+		s = s->next;
+	}
+	return 0;
+}
+
+
+// Removes from the list and frees the nodes of all the items that are min <= value <= max
+void sllist_remove_interval(SLList *list, int min, int max) {
+	int remain = 0;
+	for(int i = min; i <= max; i++) {
+		do{
+			remain = sllist_remove(list, i);
+		}while(remain != 0);
+	}
+}
+
+int sllist_contains(SLList *list, int value) {
+	SLEntry *p = list->head;
+	if(list->head->value == value) return 1;
+	while(p != NULL) {
+		if(p->value == value) return 1;
+		p = p->next;
+	}
+	return 0;
+}
+
+// It allocates and returns a new list with the intersection of the two lists, that is the 
+// list of all the items that are common to the two lists. The items in the intersection are
+// unique. 
+SLList *
+sllist_intersection(SLList *a, SLList *b) {
+	SLList *ret = (SLList*)malloc(sizeof(SLList));
+	int *values = (int*)calloc(1000, sizeof(int));
+	int *q = values;
+	SLEntry *p = b->head;
+	
+	while(p != NULL) {
+		if(sllist_contains(a, p->value)) {
+			sllist_add_end(ret, p->value);
+		}
+		p = p->next;
+	}	
+
+	/*
+	while(p->next != NULL) {
+		*q = p->value;
+		q++;
+		*q = NULL;
+		p = p->next;
+	}
+	p = b->head;
+
+	while(p->next != NULL) {
+		int i = p->value;
+		q = values;
+		while(q != NULL) {
+			if(i == *q) {
+				sllist_add_end(ret, i);
+			}
+			q++;
+		}
+		p++;
+	}
+	*/
+	return ret;
+}
+
+void
+sllist_print(SLList *list)
+{
+	// Move to the end
+	SLEntry * e = list->head;
+
+	printf("--- List ---\n");
+	while (e!= NULL) {
+		printf("val=%d\n", e->value);
+		e = e->next;
+	}
+}

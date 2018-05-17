@@ -1,0 +1,64 @@
+/**
+ * CS180 - Lab 03 - Person
+ *
+ * Storing and calculating the cholesterol values
+ *
+ * @author Joel Van Auken <jvanauke@purdue.edu>
+ *
+ * @lab 802
+ *
+ * @date 9/18/2014
+ */
+
+public Class Person() {
+    
+    public int id, age, ldl, hdl, other;
+    
+    public Perosn(String id, int age, int ldl, int hdl, int other){
+        this.id = id;      
+        this.age = age;    
+        this.ldl = ldl;    
+        this.hdl = hdl;   
+        this.other = other;
+    }
+    
+    boolean isAdult(){
+        return this.age >= 18;
+    }
+    
+    int getTotalCholesterol() {
+        return this.ldl + this.hdl + this.other;
+    }
+    
+    boolean hasGoodTotalCholesterol() {
+        int healthy_level;
+        if (this.isAdult()){
+            healthy_level = 200;
+        } else {
+            healthy_level = 170;
+        }
+        
+        if (this.getTotalCholesterol() < healthy_limit) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    boolean hasGoodLDL() {
+        if (this.isAdult() && this.ldl <= 130 || !this.isAdult && this.ldl <=110) 
+            return true;
+        return false;
+    }
+    
+    boolean hasGoodHDL() {
+        return this.hdl >= 40;
+    }
+    
+    public void printReport(){
+        System.out.println("Age: " + this.age + " (" + (isAdult() ? "Adult" : "Child") + ")");
+        System.out.println("Total Cholesterol: " + this.cholesterol + " (" + (this.hasGoodTotalCholesterol() ? "Good" : "Bad") + ")");
+        System.out.println("LDL: " + this.ldl + " (" + (this.hasGoodLDL() ? "Good" : "Bad") + ")");
+        System.out.println("HDL: " + this.hdl + " (" + (this.hasGoodHDL() ? "Good" : "Bad") + ")");
+    }   
+}

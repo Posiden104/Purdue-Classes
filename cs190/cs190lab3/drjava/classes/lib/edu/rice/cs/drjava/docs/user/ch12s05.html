@@ -1,0 +1,19 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Generate Custom drjava.jar File</title><meta name="generator" content="DocBook XSL Stylesheets V1.69.1"><link rel="start" href="index.html" title="DrJava User Documentation"><link rel="up" href="ch12.html" title="Chapter 12. Other Dialogs"><link rel="prev" href="ch12s04.html" title="Compiz Detected"><link rel="next" href="apa.html" title="Appendix A. Configuring DrJava"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Generate Custom drjava.jar File</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch12s04.html">Prev</a> </td><th width="60%" align="center">Chapter 12. Other Dialogs</th><td width="20%" align="right"> <a accesskey="n" href="apa.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="other-dialogs-generate-custom-drjava"></a>Generate Custom drjava.jar File</h2></div></div></div><p>This dialog can be found in the Tools, Advanced menu. This
+dialog lets you generate a custom drjava.jar file based on the
+currently running version of DrJava, and you can include additional
+jar files, zip files or directories. These additional files are added
+to the drjava.jar and are immediately available in the generated
+DrJava application without having to set up extra classpaths.</p><p>If a file is contained in more than one source, the file
+contained in the first source will be included; conflicting files from
+sources further down the list will be skipped.  Files belonging to
+DrJava always take precedence.</p><p>Note: This implies that DrJava's manifest file will be used.</p><p>Please note that the added files may produce a copy of
+DrJava does not work as intended, and that it will be more difficult
+for us to help you with these problems. YOU ARE USING THE CUSTOM
+DRJAVA.JAR FILE AT YOUR OWN RISK.</p><p>The dialog contains the following components:</p><p><b>Output Jar File. </b>The file that the custom drjava.jar should be written to.</p><p><b>Additional Sources. </b>The list of additional jar or zip files or directories
+that should be added to the custom drjava.jar file. If a file is
+contained in more than one source, the file contained in the first
+source will be included; conflicting files from sources further down
+the list will be skipped. Files belonging to DrJava always take
+precedence.The file that the custom drjava.jar should be written
+to.</p><p><b>Check Conflicts. </b>Pressing this button causes DrJava to scan itself and the additional sources to identify conflicts. If any conflicts are found, they are listed in a dialog.</p><p><b>Generate. </b>Pressing this button lets DrJava generate the specified output file. It first checks for conflicts, though, and if conflicts are found they are displayed;
+	the user then has the option of aborting the generation or generating anyway.</p><p><b>Close. </b>This closes the dialog.</p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch12s04.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch12.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="apa.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Compiz Detected </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Appendix A. Configuring DrJava</td></tr></table></div></body></html>

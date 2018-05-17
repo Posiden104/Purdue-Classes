@@ -1,0 +1,17 @@
+Sample testcase formats:
+
+Tests 1 and 2 are sample testcases from part 1, one small and one large case.
+They were run in the testcases directory with the following commands:
+
+./program 1 test1 out1 3 chunks1/
+./program 1 test2 out2 10000 chunks2/
+
+The file structure in this folder represents the correct output.
+
+Test 3 does not have a textfile input. It was run with the following command
+
+./program 2 out1 aaa aba car
+
+You can check these testcases against your own program using
+
+diff -Bis file1 file2

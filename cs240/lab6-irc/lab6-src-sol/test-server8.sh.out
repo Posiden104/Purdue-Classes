@@ -1,0 +1,37 @@
+Add Users
+response:
+OK
+
+response:
+OK
+
+response:
+OK
+
+response:
+OK
+
+Enter room
+response:
+OK
+
+response:
+OK
+
+Print users in room
+response:
+DENIED (not in room)
+
+Enter another user
+response:
+OK
+
+Send message
+response:
+DENIED (not in room)
+
+Get messages
+response:
+DENIED (not in room)
+
+Killing Server

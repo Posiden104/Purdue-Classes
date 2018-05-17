@@ -1,0 +1,153 @@
+import java.util.Random;
+
+public class Minesweeper {
+
+	private final boolean[][] minefield;
+	private final int[][] clueGrid;
+	private boolean[][] checked;
+
+	private int r, c;
+
+	public Minesweeper(int r, int c, int mines) {
+		this.r = r;
+		this.c = c;
+
+		generateMinefield(mines);
+		generateClueGrid();
+
+		for (int i = 0; i < checked.length; i++) {
+			for (int j = 0; j < checked[i].length; j++) {
+				checked[i][j] = false;
+			}
+		}
+	}
+
+	private void generateMinefield(int mines) {
+		for (int i = 0; i < minefield.length; i++) {
+			for (int j = 0; j < minefield[i].lenght; j++) {
+				minefield[i][j] = false;
+			}
+		}
+		Random rand = new Random(System.currentTimeMillis());
+
+		while (mines > 0) {
+			int r = rand.nextInt(minefield.length);
+			int c = rand.nextInt(minefield[r].length);
+
+			if (!minefield[r][c]) {
+				minefield[r][c] = true;
+				mines--;
+			}
+		}
+	}
+
+	private void geneateClueGrid() {
+		for (int i = 0; i < r; i++) {
+			for (int j = 0; j < c; j++) {
+				if(minefield[i][j]){
+					clueGrid[i][j] = -1;
+				} else {
+				clueGrid[i][j] = countMines(i, j);
+			}
+		}
+	}
+
+	private int countMines(int r, int c) {
+		int mines = 0;
+		for (int i = Math.max(r - 1, 0); i <= Math.min(r + 1, this.r - 1); i++) {
+			for (int j = Math.max(c - 1, 0); j <= Math.min(c + 1, this.c - 1); j++) {
+				if (!(i == r && j == c)) {
+					if (minefield[i][j]) {
+						mines++;
+					}
+				}
+			}
+		}
+		return mines;
+	}
+
+	private void printBoard() {
+		System.out.print("   ");
+		for (int j = 0; j < columns; j++) {
+			System.out.print(" " + (j + 1));
+		}
+		System.out.println();
+
+		System.out.print("  +-");
+		for (int j = 0; j < columns; j++) {
+			System.out.print("--");
+		}
+		System.out.println();
+
+		System.out.print(row_letter + " |");
+		for (int j = 0; j < columns; j++) {
+			System.out.print(" " + cell_symbol);
+		}
+		System.out.println();
+
+		char row_letter = 'A';
+		for (int i = 0; i < rows; i++) {
+			System.out.print(row_letter + " |");
+			for (int j = 0; j < columns; j++) {
+				char cell_symbol;
+				if (!checked[i][j]) {
+					cell_symbol = '?';
+				} else if (minefield[i][j]) {
+					cell_symbol = '*';
+				} else if (clueGrid[i][j] > 0) {
+					cell_symbol = (char) ('0' + clueGrid[i][j]);
+				} else {
+					cell_symbol = ' ';
+				}
+				System.out.print(" " + cell_symbol);
+			}
+			System.out.println();
+			row_letter++;
+		}
+	}
+
+	public void start() {
+		Scanner scanner = new Scanner(System.in);
+		boolean win = false;
+		while (!win) {
+			printBoard();
+			System.out.print("Check cell? ");
+			String line = scanner.nextLine().toUpperCase();
+			int row = line.charAt(0) - 'A';
+			int column = line.charAt(1) - '1';
+			if (minefield[row][column]) {
+				break;
+			} else {
+				checked[row][column] = true;
+			}
+			win = true;
+			for (int i = 0; i < rows && win; i++) {
+				for (int j = 0; j < columns && win; j++) {
+					if (!checked[i][j] && !minefield[i][j]) {
+						win = false;
+					}
+				}
+			}
+		}
+		scanner.close();
+
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < columns; j++) {
+				checked[i][j] = true;
+			}
+		}
+		printBoard();
+
+		if (win) {
+			System.out.println("\nYou win!");
+		} else {
+			System.out.println("\nYou're not very good at this are you?");
+		}
+	}
+
+	public static void main(String[] args) {
+		Minesweeper m = new Minesweeper(5, 5, 5);
+		m.start();
+	}
+
+}
