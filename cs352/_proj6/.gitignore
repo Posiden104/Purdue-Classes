@@ -1,0 +1,7 @@
+*.class
+*.log
+compiler/gen/out
+compiler/gen/gen.s
+compiler/target
+compiler/project/target
+.*.sw*

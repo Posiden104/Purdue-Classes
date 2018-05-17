@@ -1,0 +1,7 @@
+def sum(n: Int) = {
+	if(n == 0) {0} else {
+	if(n == 1) {1} else {
+	sum(n + n - 1) }}
+};
+
+sum(3)

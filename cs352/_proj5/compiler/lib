@@ -1,0 +1,15 @@
+def listForeach[T](f: T => Unit, l: List[T]): Unit =
+  if (!l.isEmpty) {
+    f(l.head);
+    listForeach[T](f, l.tail)
+  };
+
+def printChar(c: Char) = putchar(c.toInt);
+
+def foo(c: Char) = putchar('J'.toInt);
+
+//val l = listMake3[Char]('O', 'K', '\n');
+val l = 'O'::'K'::'\n'::Nil;
+listForeach[Char](foo, l);
+//printChar(l.head);
+0

@@ -1,0 +1,9 @@
+def printChar(c: Int) = putchar(c);
+def functionCompose(f: Int => Int, g: Int => Int) = (x: Int) => f(g(x));
+def plus(x: Int, y: Int) = x + y;
+def succ(x: Int) = x + 1;
+def twice(x: Int) = x + x;
+printChar(functionCompose(succ,twice)(39));
+printChar(functionCompose(succ,succ)(73));
+printChar(functionCompose(twice,succ)(4));
+0

@@ -1,0 +1,2 @@
+A,B,C,D,E,F,G,P,Q,R
+A->CDE,B->FG,AB->CDEFG,P->QR

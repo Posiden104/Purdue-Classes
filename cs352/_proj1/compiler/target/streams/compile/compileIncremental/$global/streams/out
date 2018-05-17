@@ -1,0 +1,17 @@
+[0m[[0m[0mdebug[0m] [0m[0mFull compilation, no sources in previous analysis.[0m
+[0m[[0m[0mdebug[0m] [0m[0mAll sources are invalidated.[0m
+[0m[[0m[0mdebug[0m] [0m[0mRecompiling all 4 sources: invalidated sources (4) exceeded 50.0% of all sources[0m
+[0m[[0m[0minfo[0m] [0m[0mCompiling 4 Scala sources to /u/data/u96/jvanauke/cs352/_proj1/compiler/target/scala-2.11/classes ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mGetting org.scala-sbt:compiler-bridge_2.11:1.0.3:compile for Scala 2.11.12[0m
+[0m[[0m[0mdebug[0m] [0m[0mGetting org.scala-sbt:compiler-bridge_2.11:1.0.3:compile for Scala 2.11.12[0m
+[0m[[0m[0mdebug[0m] [0m[0m[zinc] Running cached compiler 22d4d4bb for Scala compiler version 2.11.12[0m
+[0m[[0m[0mdebug[0m] [0m[0m[zinc] The Scala compiler is invoked with:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	-feature[0m
+[0m[[0m[0mdebug[0m] [0m[0m	-deprecation[0m
+[0m[[0m[0mdebug[0m] [0m[0m	-unchecked[0m
+[0m[[0m[0mdebug[0m] [0m[0m	-bootclasspath[0m
+[0m[[0m[0mdebug[0m] [0m[0m	/usr/lib/jvm/java-8-oracle/jre/lib/resources.jar:/usr/lib/jvm/java-8-oracle/jre/lib/rt.jar:/usr/lib/jvm/java-8-oracle/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jsse.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jce.jar:/usr/lib/jvm/java-8-oracle/jre/lib/charsets.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jfr.jar:/usr/lib/jvm/java-8-oracle/jre/classes:/homes/jvanauke/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.11.12.jar[0m
+[0m[[0m[0mdebug[0m] [0m[0m	-classpath[0m
+[0m[[0m[0mdebug[0m] [0m[0m	/u/data/u96/jvanauke/cs352/_proj1/compiler/target/scala-2.11/classes:/homes/jvanauke/.ivy2/cache/com.lihaoyi/fastparse_2.11/jars/fastparse_2.11-1.0.0.jar:/homes/jvanauke/.ivy2/cache/com.lihaoyi/fastparse-utils_2.11/jars/fastparse-utils_2.11-1.0.0.jar:/homes/jvanauke/.ivy2/cache/com.lihaoyi/sourcecode_2.11/bundles/sourcecode_2.11-0.1.4.jar[0m
+[0m[[0m[0mdebug[0m] [0m[0mScala compilation took 3.424773481 s[0m
+[0m[[0m[0minfo[0m] [0m[0mDone compiling.[0m

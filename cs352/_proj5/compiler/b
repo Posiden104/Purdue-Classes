@@ -1,0 +1,8 @@
+def makeAdder(x: Int) = {
+	(y: Int) => {
+		x + y
+	}
+};
+
+val increment = makeAdder(1);
+increment(41)

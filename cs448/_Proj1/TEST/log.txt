@@ -1,0 +1,7 @@
+Insert values: 0,joel,qwer,tyui,op,104,01,2.4
+Insert values: 1,qwer,tyui,op10,401h,aha,lol,234
+Delete Entry: 0,joel,qwer,tyui,op,104,01,2.4
+Insert values: 2,qwer,qwer,qwer,ryty,fgh,ad,qw
+Insert values: 3,asdf,h,cd,eg,fdsf,fdsh,ffd
+Delete Entry: 2,qwer,qwer,qwer,ryty,fgh,ad,qw
+Updated entry from :3,asdf,h,cd,eg,fdsf,fdsh,ffd to : wer,nkw,xoew,cjonw,234,564,aasd

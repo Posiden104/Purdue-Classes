@@ -1,0 +1,14 @@
+run "1+1"
+ push %rbp       # save stack frame for C convention
+        mov %rsp, %rbp
+        # beginning generated code
+        movq $1, %rbx
+        movq $1, %rcx
+        addq %rcx, %rbx
+        movq %rbx, %rax
+        # end generated code
+        # %rax contains the result
+        mov %rbp, %rsp  # reset frame
+        pop %rbp
+        ret
+exit

@@ -1,0 +1,3 @@
+val arr: Array[Int] = new Array[Int](4);
+arr(0) = 2;
+arr(0)

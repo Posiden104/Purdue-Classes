@@ -1,0 +1,23 @@
+---------------------
+Expected Output of Input1.txt
+---------------------
+A,B,C,D,E,F
+
+
+---------------------
+Expected Output of Input2.txt
+---------------------
+B->D,D->A
+
+
+---------------------
+Expected Output of Input3.txt
+---------------------
+AB
+
+---------------------
+Expected Output of Input4.txt
+---------------------
+A,C,D,E
+B,F,G
+A,B

@@ -1,0 +1,25 @@
+Input 1:
+A,B,C,D
+A->C,C->D,CD->E,EC->F,G->H
+
+Input 2:
+B->A,D->A,AB->D
+
+example 2: A->BCDE,CD->E
+expected: A->BCD,CD->E
+
+online example: AB->C,C->A,BC->D,ACD->B,D->E,D->G,BE->C,CG->B,CG->D,CE->A,CE->G
+expected: AB->C,BC->D,BE->C,CE->G,D->EG
+
+Input 3:
+A,B,C,D,E
+A->C,C->D,CD->E
+
+online example:
+A,B,C,D,E,G
+AB->CD,A->B,B->C,C->E,BD->A
+expected: ag or bdg
+
+Input 4:
+A,B,C,D,E,F,G
+A->CDE,B->FG,AB->CDEFG
